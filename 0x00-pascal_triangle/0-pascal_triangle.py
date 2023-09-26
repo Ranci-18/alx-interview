@@ -6,7 +6,7 @@ def pascal_triangle(n):
     """the function"""
     if n <= 0:
         return []
-    
+
     triangle = [[1]]
 
     for i in range(1, n):
@@ -16,5 +16,5 @@ def pascal_triangle(n):
             new_row.append(mid_value)
         new_row.append(1)
         triangle.append(new_row)
-    
+
     return triangle
