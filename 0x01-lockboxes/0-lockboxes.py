@@ -4,6 +4,8 @@
 
 def canUnlockAll(boxes):
     """function to check if all boxes can be opened"""
+    if boxes is None or len(boxes) == 0:
+        return False
     # get number of boxes
     number_of_boxes = len(boxes)
     # initialize box switch to keep track of open boxes.
