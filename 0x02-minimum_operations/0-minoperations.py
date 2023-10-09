@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """function module for minimum number of operations"""
+
+
 def minOperations(n):
     """function to perform minimum number of operations
     - copy-paste problem"""
