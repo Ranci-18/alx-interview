@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """module to parse the logs and generate statistics"""
 from sys import stdin
+import re
 
 
 def parse_logs_and_print_stats():
@@ -13,20 +14,20 @@ def parse_logs_and_print_stats():
     counter = 0
 
     try:
-        for line in enumerate(stdin):
+        for logline in enumerate(stdin):
             try:
-                data_array = []
                 counter += 1
-                data = line.split()
-                data_array.append(data)
-                file_size += int(data_array[-1])
-                status_code = data_array[-2]
+                regex = r'/^([\d.]+) - \[([\d\- :.]+)\] "(.*?)" (\d+) (\d+)$/'
+                match = re.search(regex, logline)
+                if match:
+                    file_size += int(match.group(5))
+                    status_code = match.group(4)
                 if status_code in status_codes:
                     status_codes[status_code] += 1
                 if counter == 10:
                     print("File size: {}".format(file_size))
                     for key, value in sorted(status_codes.items()):
-                        if value != 0:
+                        if value > 0:
                             print("{}: {}".format(key, value))
                     counter = 0
             except ValueError:
@@ -34,5 +35,5 @@ def parse_logs_and_print_stats():
     except KeyboardInterrupt:
         print("File size: {}".format(file_size))
         for key, value in sorted(status_codes.items()):
-            if value != 0:
+            if value > 0:
                 print("{}: {}".format(key, value))
