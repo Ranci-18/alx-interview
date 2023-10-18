@@ -13,22 +13,25 @@ def parse_logs_and_print_stats():
     counter = 0
 
     try:
-        for line in stdin:
-            counter += 1
-            data = line.split()
-            file_size += int(data[-1])
-            status_code = data[-2]
-            if status_code in status_codes:
-                status_codes[status_code] += 1
-            if counter == 10:
-                print("File size: {}".format(file_size))
-                for key, value in sorted(status_codes.items()):
-                    if value != 0:
-                        print("{}: {}".format(key, value))
-                counter = 0
+        for line in enumerate(stdin):
+            try:
+                data_array = []
+                counter += 1
+                data = line.split()
+                data_array.append(data)
+                file_size += int(data_array[-1])
+                status_code = data_array[-2]
+                if status_code in status_codes:
+                    status_codes[status_code] += 1
+                if counter == 10:
+                    print("File size: {}".format(file_size))
+                    for key, value in sorted(status_codes.items()):
+                        if value != 0:
+                            print("{}: {}".format(key, value))
+                    counter = 0
+            except ValueError:
+                continue
     except KeyboardInterrupt:
-        pass
-    finally:
         print("File size: {}".format(file_size))
         for key, value in sorted(status_codes.items()):
             if value != 0:
