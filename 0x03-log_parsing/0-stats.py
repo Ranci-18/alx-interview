@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """module to parse the logs and generate statistics"""
-from sys import stdin
+from sys import stdin, exit
 
 
 def parse_logs_and_print_stats():
@@ -33,4 +33,6 @@ def parse_logs_and_print_stats():
                 print("{}: {}".format(key, value))
 
 
-parse_logs_and_print_stats()
+if __name__ == "__main__":
+    parse_logs_and_print_stats()
+    exit(0)
