@@ -8,7 +8,7 @@ def parse_logs_and_print_stats():
     and parse by status code and file size"""
     status_codes = {"200": 0, "301": 0, "400": 0, "401": 0,
                     "403": 0, "404": 0, "405": 0, "500": 0}
-    
+
     file_size = 0
     counter = 0
 
