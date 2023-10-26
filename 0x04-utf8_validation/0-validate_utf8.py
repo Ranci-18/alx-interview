@@ -9,8 +9,7 @@ def validUTF8(data):
     for unit_data in data:
         if not (0 <= unit_data < 256):
             return False
-        if unit_data & 0xFF != unit_data:
-            return False
+
         byte_data = bytes([unit_data])
         try:
             codecs.decode(byte_data, 'utf-8', errors='strict')
