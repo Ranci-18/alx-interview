@@ -65,10 +65,10 @@ if __name__ == "__main__":
 
     queens = int(sys.argv[1])
 
-    def print_coordinates(queen_position):
+    def print_coordinates(queen_row):
         """function to print the coordinates of the queens"""
         coordinates = []
-        for row_index, row in enumerate(queen_position):
+        for row_index, row in enumerate(queen_row):
             for col_index, cell in enumerate(row):
                 if cell == 1:
                     coordinates.append([row_index, col_index])
