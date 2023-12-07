@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """ Prime Game """
 
+
 def isWinner(x, nums):
     """ script for the prime game """
     if not nums or x < 1:
         return None
-    
+
     round = 0
     nums.sort()
 
@@ -22,7 +23,7 @@ def isWinner(x, nums):
             nums.remove(nums[i])
             round += 1
             break
-                
+
     if round % 2 == 0:
         return "Maria"
     else:
